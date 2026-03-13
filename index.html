@@ -22,8 +22,8 @@
       --cream-dark: #EDE5D8;
       --warm-white: #FDFBF7;
       --charcoal: #1E1E1E;
-      --text: #2A2A2A;
-      --text-light: #5A5A5A;
+      --text: #1E1E1E;
+      --text-light: #444444;
       --radius: 16px;
       --radius-lg: 24px;
       --shadow-sm: 0 2px 8px rgba(27, 61, 47, 0.06);
@@ -95,15 +95,28 @@
 
     .nav-links a {
       text-decoration: none;
-      color: var(--text);
+      color: rgba(255, 255, 255, 0.9);
       font-weight: 600;
       font-size: 0.9rem;
       letter-spacing: 0.01em;
-      transition: color 0.2s;
+      transition: color 0.3s;
     }
 
     .nav-links a:hover {
+      color: white;
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--text);
+    }
+
+    nav.scrolled .nav-links a:hover {
       color: var(--evergreen);
+    }
+
+    nav.scrolled .nav-links .btn-nav,
+    nav.scrolled .nav-links .btn-nav:hover {
+      color: white;
     }
 
     .nav-links .btn-nav {
@@ -155,11 +168,24 @@
       overflow: hidden;
     }
 
+    .hero-bg-photo {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1800&q=80') center center / cover no-repeat;
+      opacity: 0.35;
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--evergreen) 0%, rgba(27, 61, 47, 0.7) 50%, var(--slate) 100%);
+    }
+
     .hero-bg .shape {
       position: absolute;
       border-radius: 50%;
       filter: blur(80px);
-      opacity: 0.4;
+      opacity: 0.25;
     }
 
     .hero-bg .shape-1 {
@@ -184,22 +210,7 @@
       background: var(--amber);
       top: 40%;
       right: 20%;
-      opacity: 0.2;
-    }
-
-    /* Mountain silhouette */
-    .hero-mountains {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 300px;
-      opacity: 0.08;
-    }
-
-    .hero-mountains svg {
-      width: 100%;
-      height: 100%;
+      opacity: 0.15;
     }
 
     .hero-content {
@@ -219,7 +230,7 @@
       border-radius: 100px;
       font-size: 0.8rem;
       font-weight: 600;
-      color: var(--sage);
+      color: rgba(255, 255, 255, 0.85);
       letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-bottom: 2rem;
@@ -239,6 +250,7 @@
       color: white;
       margin-bottom: 1.5rem;
       line-height: 1.05;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
     .hero h1 .highlight {
@@ -248,10 +260,11 @@
 
     .hero-sub {
       font-size: clamp(1.1rem, 2vw, 1.35rem);
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.9);
       line-height: 1.6;
       max-width: 600px;
       margin-bottom: 2.5rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
     }
 
     .hero-actions {
@@ -461,6 +474,13 @@
       background: var(--evergreen);
       position: relative;
       overflow: hidden;
+    }
+
+    .beliefs-bg-photo {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80') center center / cover no-repeat;
+      opacity: 0.15;
     }
 
     .beliefs::after {
@@ -829,7 +849,7 @@
 
     .event-card p {
       font-size: 0.85rem;
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.75);
     }
 
     /* ========== CTA / JOIN ========== */
@@ -838,6 +858,13 @@
       position: relative;
       overflow: hidden;
       text-align: center;
+    }
+
+    .join-bg-photo {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1600&q=80') center center / cover no-repeat;
+      opacity: 0.12;
     }
 
     .join::before {
@@ -865,7 +892,7 @@
     }
 
     .join .section-subtitle {
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.85);
       margin: 0 auto 2.5rem;
       text-align: center;
     }
@@ -1127,14 +1154,11 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg">
+      <div class="hero-bg-photo"></div>
+      <div class="hero-bg-overlay"></div>
       <div class="shape shape-1"></div>
       <div class="shape shape-2"></div>
       <div class="shape shape-3"></div>
-    </div>
-    <div class="hero-mountains">
-      <svg viewBox="0 0 1440 300" preserveAspectRatio="none" fill="white">
-        <path d="M0,300 L0,200 L120,160 L240,190 L360,120 L480,170 L540,80 L620,140 L720,40 L820,130 L920,90 L1020,150 L1100,60 L1200,130 L1300,100 L1380,160 L1440,140 L1440,300 Z"/>
-      </svg>
     </div>
     <div class="hero-content">
       <div class="hero-badge">Part of the Abundance Network</div>
@@ -1184,8 +1208,14 @@
     </div>
   </section>
 
+  <!-- PHOTO BREAK -->
+  <div class="photo-break" style="height: 400px; background: url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=1600&q=80') center center / cover no-repeat; position: relative;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, var(--cream) 0%, transparent 15%, transparent 85%, var(--evergreen) 100%);"></div>
+  </div>
+
   <!-- BELIEFS -->
   <section class="beliefs">
+    <div class="beliefs-bg-photo"></div>
     <div class="container">
       <div class="reveal">
         <div class="section-label">What We Believe</div>
@@ -1229,6 +1259,11 @@
       </div>
     </div>
   </section>
+
+  <!-- PHOTO BREAK 2 -->
+  <div class="photo-break" style="height: 350px; background: url('https://images.unsplash.com/photo-1467987506553-8f3916508521?w=1600&q=80') center 40% / cover no-repeat; position: relative;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, var(--warm-white) 0%, transparent 20%, transparent 80%, var(--cream) 100%);"></div>
+  </div>
 
   <!-- HOW WE WORK -->
   <section class="equation" id="how">
@@ -1346,6 +1381,7 @@
 
   <!-- JOIN / CTA -->
   <section class="join" id="join">
+    <div class="join-bg-photo"></div>
     <div class="container">
       <div class="reveal">
         <div class="section-label" style="color: var(--sage);">Get Involved</div>
