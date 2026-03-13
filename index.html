@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Seattle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --evergreen: #1B3D2F;
+      --evergreen-light: #2A5A43;
+      --forest: #3D7A5A;
+      --sage: #7BA68E;
+      --slate: #2C4A5E;
+      --slate-light: #4A7A94;
+      --amber: #D4943A;
+      --amber-light: #E8B468;
+      --amber-glow: #F0C87820;
+      --cream: #F7F2EA;
+      --cream-dark: #EDE5D8;
+      --warm-white: #FDFBF7;
+      --charcoal: #1E1E1E;
+      --text: #2A2A2A;
+      --text-light: #5A5A5A;
+      --radius: 16px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 2px 8px rgba(27, 61, 47, 0.06);
+      --shadow-md: 0 8px 32px rgba(27, 61, 47, 0.08);
+      --shadow-lg: 0 16px 48px rgba(27, 61, 47, 0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text);
+      background: var(--warm-white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    /* ========== NAV ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    nav.scrolled {
+      background: rgba(253, 251, 247, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(27, 61, 47, 0.08);
+    }
+
+    .nav-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--evergreen);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span {
+      color: var(--amber);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--evergreen);
+    }
+
+    .nav-links .btn-nav {
+      background: var(--evergreen);
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 100px;
+      transition: all 0.3s;
+    }
+
+    .nav-links .btn-nav:hover {
+      background: var(--evergreen-light);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--evergreen);
+      margin: 5px 0;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--evergreen);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .hero-bg .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+    }
+
+    .hero-bg .shape-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--forest);
+      top: -200px;
+      right: -100px;
+    }
+
+    .hero-bg .shape-2 {
+      width: 500px;
+      height: 500px;
+      background: var(--slate);
+      bottom: -150px;
+      left: -100px;
+    }
+
+    .hero-bg .shape-3 {
+      width: 300px;
+      height: 300px;
+      background: var(--amber);
+      top: 40%;
+      right: 20%;
+      opacity: 0.2;
+    }
+
+    /* Mountain silhouette */
+    .hero-mountains {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 300px;
+      opacity: 0.08;
+    }
+
+    .hero-mountains svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 8rem 3rem 6rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--sage);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--amber);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      color: white;
+      margin-bottom: 1.5rem;
+      line-height: 1.05;
+    }
+
+    .hero h1 .highlight {
+      color: var(--amber-light);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 100px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--amber-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212, 148, 58, 0.3);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .btn-dark {
+      background: var(--evergreen);
+      color: white;
+    }
+
+    .btn-dark:hover {
+      background: var(--evergreen-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ========== SCROLL INDICATOR ========== */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .scroll-indicator .line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ========== SECTIONS ========== */
+    section {
+      padding: 7rem 3rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--forest);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--amber);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: var(--evergreen);
+      margin-bottom: 1.5rem;
+      max-width: 700px;
+    }
+
+    .section-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 3rem;
+    }
+
+    /* ========== VISION ========== */
+    .vision {
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vision::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: var(--amber-glow);
+      filter: blur(100px);
+    }
+
+    .vision-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      position: relative;
+    }
+
+    .vision-card {
+      background: var(--warm-white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(27, 61, 47, 0.04);
+    }
+
+    .vision-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .vision-card .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .vision-card:nth-child(1) .icon { background: #E8F5ED; }
+    .vision-card:nth-child(2) .icon { background: #E5EFF5; }
+    .vision-card:nth-child(3) .icon { background: #FDF3E5; }
+    .vision-card:nth-child(4) .icon { background: #F0E8F5; }
+
+    .vision-card h3 {
+      font-size: 1.4rem;
+      color: var(--evergreen);
+      margin-bottom: 0.75rem;
+    }
+
+    .vision-card p {
+      color: var(--text-light);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    /* ========== BELIEFS ========== */
+    .beliefs {
+      background: var(--evergreen);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .beliefs::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      border-radius: 50%;
+      background: var(--slate);
+      opacity: 0.15;
+      filter: blur(80px);
+    }
+
+    .beliefs .section-label {
+      color: var(--sage);
+    }
+
+    .beliefs .section-label::before {
+      background: var(--amber);
+    }
+
+    .beliefs .section-title {
+      color: white;
+    }
+
+    .beliefs-quote {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 3rem 0;
+      padding: 3rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-lg);
+      border-left: 4px solid var(--amber);
+    }
+
+    .beliefs-quote p {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ========== VALUES ========== */
+    .values {
+      background: var(--warm-white);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .value-card {
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--cream);
+      border: 1px solid rgba(27, 61, 47, 0.06);
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background: var(--amber);
+      transition: height 0.4s;
+      border-radius: 0 0 4px 0;
+    }
+
+    .value-card:hover::before {
+      height: 100%;
+    }
+
+    .value-card:hover {
+      background: white;
+      box-shadow: var(--shadow-md);
+    }
+
+    .value-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--sage);
+      opacity: 0.4;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .value-card h3 {
+      font-size: 1.3rem;
+      color: var(--evergreen);
+      margin-bottom: 0.75rem;
+    }
+
+    .value-card p {
+      color: var(--text-light);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    /* ========== HOW WE WORK (THE EQUATION) ========== */
+    .equation {
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .equation-formula {
+      text-align: center;
+      margin: 3rem 0;
+      padding: 3rem 2rem;
+      background: var(--warm-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .equation-formula h3 {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      color: var(--evergreen);
+      line-height: 1.4;
+    }
+
+    .equation-formula .plus {
+      color: var(--amber);
+      margin: 0 0.3rem;
+    }
+
+    .equation-formula .equals {
+      display: block;
+      margin-top: 1rem;
+      color: var(--forest);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .equation-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .pillar-card {
+      background: var(--warm-white);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s;
+      border: 1px solid rgba(27, 61, 47, 0.04);
+      position: relative;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .pillar-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .pillar-card:nth-child(1) .pillar-icon {
+      background: linear-gradient(135deg, #E8F5ED, #D0EBD8);
+    }
+    .pillar-card:nth-child(2) .pillar-icon {
+      background: linear-gradient(135deg, #E5EFF5, #CCDFEB);
+    }
+    .pillar-card:nth-child(3) .pillar-icon {
+      background: linear-gradient(135deg, #FDF3E5, #F5E3C5);
+    }
+
+    .pillar-card h3 {
+      font-size: 1.4rem;
+      color: var(--evergreen);
+      margin-bottom: 0.75rem;
+    }
+
+    .pillar-card p {
+      color: var(--text-light);
+      line-height: 1.65;
+      font-size: 0.92rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pillar-tagline {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      color: var(--amber);
+      font-size: 1.05rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(27, 61, 47, 0.08);
+    }
+
+    .pillar-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .stat-chip {
+      background: var(--cream);
+      padding: 0.35rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    /* ========== FOR EVERYONE ========== */
+    .for-everyone {
+      background: var(--warm-white);
+    }
+
+    .for-everyone-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .for-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--cream);
+      padding: 0.8rem 1.4rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--evergreen);
+      border: 1px solid rgba(27, 61, 47, 0.06);
+      transition: all 0.3s;
+    }
+
+    .for-tag:hover {
+      background: var(--evergreen);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .for-tag .for-icon {
+      font-size: 1.1rem;
+    }
+
+    .north-star {
+      margin-top: 3rem;
+      padding: 2.5rem;
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+
+    .north-star p {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      color: var(--evergreen);
+    }
+
+    .north-star p em {
+      color: var(--amber);
+    }
+
+    /* ========== UPDATES / EVENTS PLACEHOLDER ========== */
+    .updates {
+      background: var(--cream);
+    }
+
+    .updates-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+    }
+
+    .updates-main h3 {
+      font-size: 1.5rem;
+      color: var(--evergreen);
+      margin-bottom: 1.5rem;
+    }
+
+    .update-item {
+      padding: 1.5rem;
+      background: var(--warm-white);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      border: 1px solid rgba(27, 61, 47, 0.04);
+      transition: all 0.3s;
+    }
+
+    .update-item:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .update-date {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+
+    .update-item h4 {
+      font-size: 1.1rem;
+      color: var(--evergreen);
+      margin-bottom: 0.4rem;
+    }
+
+    .update-item p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .events-sidebar h3 {
+      font-size: 1.5rem;
+      color: var(--evergreen);
+      margin-bottom: 1.5rem;
+    }
+
+    .event-card {
+      padding: 1.5rem;
+      background: var(--evergreen);
+      border-radius: var(--radius);
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .event-card .event-date {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--amber-light);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-card h4 {
+      font-size: 1.05rem;
+      color: white;
+      margin-bottom: 0.3rem;
+    }
+
+    .event-card p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ========== CTA / JOIN ========== */
+    .join {
+      background: var(--evergreen);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .join::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--forest) 0%, transparent 70%);
+      opacity: 0.3;
+    }
+
+    .join .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .join .section-title {
+      color: white;
+      margin: 0 auto 1rem;
+      text-align: center;
+    }
+
+    .join .section-subtitle {
+      color: rgba(255,255,255,0.7);
+      margin: 0 auto 2.5rem;
+      text-align: center;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      gap: 0.75rem;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      border-radius: 100px;
+      color: white;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .newsletter-form input::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .newsletter-form input:focus {
+      border-color: var(--amber);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .newsletter-form button {
+      padding: 1rem 2rem;
+      background: var(--amber);
+      color: white;
+      border: none;
+      border-radius: 100px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--amber-light);
+      transform: translateY(-2px);
+    }
+
+    .join-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--charcoal);
+      padding: 4rem 3rem 2rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-brand .nav-logo {
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .footer-social a:hover {
+      background: var(--amber);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .footer-col h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--amber);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 3rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+    }
+
+    .footer-bottom a {
+      color: var(--amber);
+      text-decoration: none;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      section { padding: 5rem 1.5rem; }
+
+      .hero-content { padding: 7rem 1.5rem 5rem; }
+
+      .vision-grid,
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .equation-pillars {
+        grid-template-columns: 1fr;
+      }
+
+      .updates-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 1.25rem; }
+
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--warm-white);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-lg);
+        border-radius: 0 0 var(--radius) var(--radius);
+      }
+
+      .mobile-toggle { display: block; }
+
+      .hero h1 { font-size: 2.6rem; }
+      .hero-sub { font-size: 1rem; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { justify-content: center; }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+      }
+
+      .scroll-indicator { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">For <span>Seattle</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#vision">Vision</a></li>
+      <li><a href="#values">Values</a></li>
+      <li><a href="#how">How We Work</a></li>
+      <li><a href="#updates">Updates</a></li>
+      <li><a href="#join" class="btn-nav">Get Involved</a></li>
+    </ul>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-mountains">
+      <svg viewBox="0 0 1440 300" preserveAspectRatio="none" fill="white">
+        <path d="M0,300 L0,200 L120,160 L240,190 L360,120 L480,170 L540,80 L620,140 L720,40 L820,130 L920,90 L1020,150 L1100,60 L1200,130 L1300,100 L1380,160 L1440,140 L1440,300 Z"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">Part of the Abundance Network</div>
+      <h1>A Seattle that<br><span class="highlight">works for all of us</span></h1>
+      <p class="hero-sub">We organize people, ideas, and money to build a growing, affordable city where everyone can thrive. No ideology. Just results.</p>
+      <div class="hero-actions">
+        <a href="#join" class="btn btn-primary">Join the Movement <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#vision" class="btn btn-ghost">What We Stand For</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="vision" id="vision">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Our Vision</div>
+        <h2 class="section-title">We see a city that delivers on its promise</h2>
+        <p class="section-subtitle">Seattle at its best is growing and affordable. Growth means new homes, new businesses, new neighbors, new energy. It's what hope looks like in a city.</p>
+      </div>
+      <div class="vision-grid">
+        <div class="vision-card reveal reveal-delay-1">
+          <div class="icon">🏠</div>
+          <h3>Enough Homes</h3>
+          <p>Lasting progress on homelessness and real affordability. More housing of every type, in every neighborhood, for every income level.</p>
+        </div>
+        <div class="vision-card reveal reveal-delay-2">
+          <div class="icon">🚊</div>
+          <h3>Better Ways to Move</h3>
+          <p>Vibrant public spaces and sustainable, efficient transportation. A city designed for people, not just cars.</p>
+        </div>
+        <div class="vision-card reveal reveal-delay-3">
+          <div class="icon">🌱</div>
+          <h3>Access to Opportunity</h3>
+          <p>Economic mobility for workers, clarity for builders, foot traffic for small businesses. A rising tide that actually lifts all boats.</p>
+        </div>
+        <div class="vision-card reveal reveal-delay-4">
+          <div class="icon">⚡</div>
+          <h3>A City That Works</h3>
+          <p>Public institutions that deliver. Leaders who get results. A Seattle for all people who want to live, work, and play here.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BELIEFS -->
+  <section class="beliefs">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">What We Believe</div>
+        <h2 class="section-title">The politics of hope, progress, and felt results</h2>
+      </div>
+      <div class="beliefs-quote reveal reveal-delay-1">
+        <p>Growth is the opposite of scarcity: it's what hope looks like in a city. When a city stops building, costs rise, people leave, and the politics turn zero-sum. We choose to be for something.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values" id="values">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Our Values</div>
+        <h2 class="section-title">Guided by what works, not who said it</h2>
+        <p class="section-subtitle">We reject magical thinking, pure messaging politics, and perfect preventing good. We believe in system redesign, cost discipline, and measurable targets.</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-number">01</div>
+          <h3>Results Over Ideology</h3>
+          <p>We judge ideas by whether they work, not where they came from. If a policy increases housing supply, reduces homelessness, accelerates transit, or lowers costs, we support it. If it doesn't, we revise it.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-number">02</div>
+          <h3>Build Real Community</h3>
+          <p>Durable change comes from choosing local engagement over national outrage. Being IRL. Coalition building. Shared meals and laughs. Showing up repeatedly.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <div class="value-number">03</div>
+          <h3>Serious Solutions</h3>
+          <p>Serious problems demand system redesign, cost discipline, institutional reform, measurable targets, and transparent transactions. No hiding the ball.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-4">
+          <div class="value-number">04</div>
+          <h3>Everyone Has a Role</h3>
+          <p>Families who want to stay. Workers who need mobility. Community members who need support. Small businesses. Builders. Residents. All of us.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section class="equation" id="how">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">How We Work</div>
+        <h2 class="section-title">From complaining to power</h2>
+        <p class="section-subtitle">Durable change doesn't happen by accident. It takes organizing on three fronts at once.</p>
+      </div>
+      <div class="equation-formula reveal">
+        <h3>Organized People <span class="plus">+</span> Organized Ideas <span class="plus">+</span> Organized Money</h3>
+        <span class="equals">= Durable Civic Leverage</span>
+      </div>
+      <div class="equation-pillars">
+        <div class="pillar-card reveal reveal-delay-1">
+          <div class="pillar-icon">🤝</div>
+          <h3>Organized People</h3>
+          <div class="pillar-stats">
+            <span class="stat-chip">1,000+ members</span>
+            <span class="stat-chip">Seattle 101</span>
+            <span class="stat-chip">LD engagement</span>
+          </div>
+          <p>Visible turnout at key votes. Connecting as people trying to do a hard thing, celebrating wins and each other.</p>
+          <div class="pillar-tagline">Shift incentives.</div>
+        </div>
+        <div class="pillar-card reveal reveal-delay-2">
+          <div class="pillar-icon">💡</div>
+          <h3>Organized Ideas</h3>
+          <div class="pillar-stats">
+            <span class="stat-chip">Focused agenda</span>
+            <span class="stat-chip">Policy analysis</span>
+            <span class="stat-chip">Working groups</span>
+          </div>
+          <p>A narrow, measurable agenda. Budget and policy analysis. Working groups ready to help rather than judge.</p>
+          <div class="pillar-tagline">Replace drift with direction.</div>
+        </div>
+        <div class="pillar-card reveal reveal-delay-3">
+          <div class="pillar-icon">🔑</div>
+          <h3>Organized Money</h3>
+          <div class="pillar-stats">
+            <span class="stat-chip">Founding investors</span>
+            <span class="stat-chip">Year-round capacity</span>
+            <span class="stat-chip">2027+ elections</span>
+          </div>
+          <p>Multi-year founding investors. Year-round organizing, consultancy, and added capacity. Electoral accountability.</p>
+          <div class="pillar-tagline">Move from complaining to power.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR EVERYONE -->
+  <section class="for-everyone">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Who This Is For</div>
+        <h2 class="section-title">Seattle is for all of us</h2>
+      </div>
+      <div class="for-everyone-grid reveal reveal-delay-1">
+        <div class="for-tag"><span class="for-icon">👨‍👩‍👧‍👦</span> Families who want to stay</div>
+        <div class="for-tag"><span class="for-icon">🚌</span> Workers who need mobility</div>
+        <div class="for-tag"><span class="for-icon">🤲</span> Community members who need support</div>
+        <div class="for-tag"><span class="for-icon">🏪</span> Small businesses who need foot traffic</div>
+        <div class="for-tag"><span class="for-icon">🏗️</span> Builders who want clarity</div>
+        <div class="for-tag"><span class="for-icon">🌳</span> Residents who want functional public spaces</div>
+      </div>
+      <div class="north-star reveal reveal-delay-2">
+        <p>Our north star is simple: <em>Does this make Seattle work better?</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPDATES & EVENTS -->
+  <section class="updates" id="updates">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label">Stay Connected</div>
+        <h2 class="section-title">What's happening</h2>
+      </div>
+      <div class="updates-grid">
+        <div class="updates-main reveal reveal-delay-1">
+          <h3>Latest Updates</h3>
+          <div class="update-item">
+            <div class="update-date">Coming Soon</div>
+            <h4>Our 2026 Policy Agenda</h4>
+            <p>A focused, measurable set of priorities for housing, transit, and institutional reform. Stay tuned.</p>
+          </div>
+          <div class="update-item">
+            <div class="update-date">Coming Soon</div>
+            <h4>Seattle 101 Launch</h4>
+            <p>New to civic life? We're building an onramp for anyone who wants to make a difference but doesn't know where to start.</p>
+          </div>
+          <div class="update-item">
+            <div class="update-date">Coming Soon</div>
+            <h4>Legislative District Organizing</h4>
+            <p>Neighborhood-level teams making sure every voice counts where it matters most.</p>
+          </div>
+        </div>
+        <div class="events-sidebar reveal reveal-delay-2">
+          <h3>Upcoming Events</h3>
+          <div class="event-card">
+            <div class="event-date">Date TBD</div>
+            <h4>For Seattle Launch Event</h4>
+            <p>Join us for our official kickoff.</p>
+          </div>
+          <div class="event-card">
+            <div class="event-date">Monthly</div>
+            <h4>Community Meetups</h4>
+            <p>Regular gatherings across Seattle neighborhoods.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN / CTA -->
+  <section class="join" id="join">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-label" style="color: var(--sage);">Get Involved</div>
+        <h2 class="section-title">Be part of what comes next</h2>
+        <p class="section-subtitle">Seattle's future is not something that happens to us. It's something we build together. Sign up and we'll keep you in the loop.</p>
+      </div>
+      <form class="newsletter-form reveal reveal-delay-1" onsubmit="event.preventDefault(); this.querySelector('button').textContent = 'You\'re in!'; this.querySelector('input').value = '';">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit">Sign Up</button>
+      </form>
+      <div class="join-actions reveal reveal-delay-2">
+        <a href="#" class="btn btn-primary">Donate</a>
+        <a href="#" class="btn btn-ghost">Volunteer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">For <span>Seattle</span></a>
+        <p>Organizing people, ideas, and money for a Seattle that works. Part of the Abundance Network.</p>
+        <div class="footer-social">
+          <a href="#" title="Twitter/X">X</a>
+          <a href="#" title="Instagram">IG</a>
+          <a href="#" title="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#vision">Our Vision</a></li>
+          <li><a href="#values">Values</a></li>
+          <li><a href="#how">How We Work</a></li>
+          <li><a href="#updates">Updates</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="#join">Join</a></li>
+          <li><a href="#">Donate</a></li>
+          <li><a href="#">Volunteer</a></li>
+          <li><a href="#">Events</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 For Seattle Project. All rights reserved.</span>
+      <span>Part of the <a href="#">Abundance Network</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Nav scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
